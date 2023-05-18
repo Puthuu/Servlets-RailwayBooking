@@ -11,21 +11,28 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.TrainDao;
 import dto.Train;
+import dto.User;
 
 @WebServlet("/usertraininfo")
-public class FetchUserTrain extends HttpServlet{
-@Override
-protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	TrainDao dao = new TrainDao();
-	List<Train> list = dao.fetchAll();
+public class FetchUserTrain extends HttpServlet {
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		User user = (User) req.getSession().getAttribute("user");
+		if (user == null) {
+			resp.getWriter().print("<h1 style='color:red'>Session Expired Login again</h1>");
+			req.getRequestDispatcher("Home.html").include(req, resp);
+		} else {
 
-	if (list.isEmpty()) {
-		resp.getWriter().print("<h1 style='color:red'>No Railway information Available</h1>");
-		req.getRequestDispatcher("ManagementHome.html").include(req, resp);
+			TrainDao dao = new TrainDao();
+			List<Train> list = dao.fetchAll();
+
+			if (list.isEmpty()) {
+				resp.getWriter().print("<h1 style='color:red'>No Railway information Available</h1>");
+				req.getRequestDispatcher("ManagementHome.html").include(req, resp);
+			} else {
+				req.setAttribute("list", list);
+				req.getRequestDispatcher("UserFetchRailway.jsp").forward(req, resp);
+			}
+		}
 	}
-	else {
-		req.setAttribute("list", list);
-		req.getRequestDispatcher("UserFetchRailway.jsp").forward(req, resp);
-	}
-}
 }

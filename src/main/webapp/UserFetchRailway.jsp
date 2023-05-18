@@ -9,9 +9,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body>
-<%List<Train> list=(List<Train>)request.getAttribute("list"); %>
+<body <img scr='https://c8.alamy.com/comp/2G350RH/indian-railways-train-kirandul-passenger-running-through-araku-valley-andhra-pradesh-india-2G350RH.jpg'/> >
 
+<%List<Train> list=(List<Train>)request.getAttribute("list"); %>
 <table border="1">
 <tr>
 <th>Train Number</th>
@@ -35,9 +35,11 @@
 <th><%=train.getTime()[0] %></th>
 <th><%=train.getTime()[train.getTime().length-1] %></th>
 <th><%=Arrays.toString(train.getDays()) %></th>
-<th><a href=".jsp?number=<%=train.getNumber()%>"><button>Book</button></a></th>
+<th><a href="BookTicket.jsp?tn=<%=train.getNumber()%>"><button>Book</button></a></th>
 </tr>
 <%} %>
-</table>
+</table><br>
+<a href="UserHome.html"><button>Back</button></a>
+
 </body>
 </html>

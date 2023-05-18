@@ -47,7 +47,8 @@ out.print(days+",");
 }
 %></textarea><br>
 
-<button type="reset">Cancel</button><button>Update</button>
+<button type="reset">Cancel</button><button>Update</button><br><br>
+<a href="ManagementLogin.html"><button>Home</button></a>
 </form>
 <br>
 </body>

@@ -93,6 +93,7 @@ public class BookTicket extends HttpServlet {
 									ticket.setDestination(to);
 									ticket.setTrainNumber(trainNumber);
 									ticket.setUser(user);
+									ticket.setStatus("Booked");
 
 									dao.save(ticket);
 									
@@ -111,7 +112,7 @@ public class BookTicket extends HttpServlet {
 									dao2.update(user);
 
 									resp.getWriter().print("<h1>Ticket Booked Successfully</h1>");
-									req.getRequestDispatcher("UserHome.html").include(req, resp);
+									req.getRequestDispatcher("Home.html").include(req, resp);
 								}
 							}
 
